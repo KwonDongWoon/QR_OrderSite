@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴 주문</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+<body>
+
+<h2 class="title">메뉴 주문</h2>
+
+<!-- ✅ 카테고리 + 장바구니 버튼 -->
+<div id="category-buttons">
+    <button data-filter="all" class="btn-filter active">전체</button>
+    <button data-filter="메인요리" class="btn-filter">메인메뉴</button>
+    <button data-filter="사이드" class="btn-filter">사이드</button>
+    <button data-filter="음료" class="btn-filter">음료</button>
+    <button id="btn-cart" class="btn-filter cart-btn">장바구니</button>
+</div>
+
+<!-- ✅ 메뉴 출력 영역 -->
+<div id="menu-container"></div>
+
+
+<!-- ✅ 장바구니 모달 (비동기 방식) -->
+<div id="cart-modal" class="hidden">
+    <div class="cart-overlay"></div>
+    <div class="cart-box">
+        <h3 class="title">장바구니</h3>
+
+        <table id="cart-table">
+            <thead>
+                <tr>
+                    <th>메뉴</th>
+                    <th>수량</th>
+                    <th>가격</th>
+                </tr>
+            </thead>
+            <tbody id="cart-body">
+                <!-- JS로 동적 생성 -->
+            </tbody>
+        </table>
+
+        <p id="cart-total">총 금액: 0원</p>
+
+        <button id="btn-order">주문하기</button>
+        <button id="btn-close-cart">닫기</button>
+    </div>
+</div>
+
+
+<!-- ✅ jQuery (CDN) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- ✅ 테이블 번호 세션 연동 -->
+<script th:inline="javascript">
+    const TABLE_NO = /*[[${tableNo}]]*/ 1;
+</script>
+
+<!-- ✅ 메뉴/장바구니 로직 -->
+<script defer th:src="@{/js/menu.js}"></script>
+
+</body>
+</html>

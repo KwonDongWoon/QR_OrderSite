@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴 등록</title>
+</head>
+<body>
+<h2>메뉴 등록</h2>
+<form action="/admin/menu/insert" method="post" enctype="multipart/form-data">
+    <div>
+        <label>카테고리</label>
+        <select name="categoryNo" required>
+            <option value="1">메인요리</option>
+            <option value="2">사이드</option>
+            <option value="3">음료</option>
+        </select>
+    </div>
+
+    <div>
+        <label>메뉴 이름</label>
+        <input type="text" name="menuName" required>
+    </div>
+
+    <div>
+        <label>가격</label>
+        <input type="number" name="price" required>
+    </div>
+
+    <div>
+        <label>대표 이미지</label>
+        <input type="file" name="menuImageFile" accept="image/*">	
+    </div>
+
+    <div>
+        <button type="submit">등록</button>
+    </div>
+</form>
+</body>
+</html>

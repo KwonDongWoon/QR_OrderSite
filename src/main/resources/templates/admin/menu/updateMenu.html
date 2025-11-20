@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴 수정</title>
+</head>
+<body>
+<h2>메뉴 수정</h2>
+
+<form th:action="@{'/admin/menu/update/' + ${menu.menuNo}}" method="post" enctype="multipart/form-data">
+    <div>
+        <label>카테고리</label>
+        <select name="category.categoryNo" required>
+            <option value="1" th:selected="${menu.category.categoryNo == 1}">메인요리</option>
+            <option value="2" th:selected="${menu.category.categoryNo == 2}">사이드</option>
+            <option value="3" th:selected="${menu.category.categoryNo == 3}">음료</option>
+        </select>
+    </div>
+
+    <div>
+        <label>메뉴 이름</label>
+        <input type="text" name="menuName" th:value="${menu.menuName}" required>
+    </div>
+
+    <div>
+        <label>가격</label>
+        <input type="number" name="price" th:value="${menu.price}" required>
+    </div>
+
+    <div>
+        <label>현재 이미지</label><br>
+        <img th:if="${menu.menuImage != null}" th:src="@{'/uploads/' + ${menu.menuImage}}" width="150">
+    </div>
+
+    <div>
+        <label>새 이미지 선택</label>
+        <input type="file" name="menuImageFile" accept="image/*">
+    </div>
+
+    <div>
+        <label>상태</label>
+        <select name="isActive">
+            <option value="Y" th:selected="${menu.isActive == 'Y'}">활성</option>
+            <option value="N" th:selected="${menu.isActive == 'N'}">비활성</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit">수정 완료</button>
+        <a href="/admin/menu/list">취소</a>
+    </div>
+</form>
+</body>
+</html>

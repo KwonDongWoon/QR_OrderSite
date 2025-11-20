@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>인원수 & 알레르기 선택</title>
+    <link rel="stylesheet" th:href="@{/css/countMember.css}">
+    <script defer th:src="@{/js/countMember.js}"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="table-info">
+        테이블 번호: <span th:text="${tableNo}">6</span>
+    </div>
+
+    <form th:action="@{/member/count}" method="post" id="orderForm">
+        <div class="count-box">
+            <button type="button" id="minus">−</button>
+            <span id="memberCount">1</span>
+            <input type="hidden" name="tableNo" th:value="${tableNo}">
+            <input type="hidden" name="member" id="member" value="1">
+            <button type="button" id="plus">＋</button>
+        </div>
+
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="allergy" value="milk"> 우유</label><br>
+            <label><input type="checkbox" name="allergy" value="egg"> 달걀</label><br>
+            <label><input type="checkbox" name="allergy" value="nut"> 견과류(땅콩, 호두, 잣)</label><br>
+            <label><input type="checkbox" name="allergy" value="fish"> 생선</label><br>
+            <label><input type="checkbox" name="allergy" value="other"> 기타(직원 호출)</label>
+        </div>
+
+        <button type="submit" class="submit-btn">확인</button>
+    </form>
+</div>
+
+</body>
+</html>

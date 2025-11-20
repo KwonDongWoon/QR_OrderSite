@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴 관리</title>
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+</head>
+<body>
+<h2 style="text-align:center;">메뉴 관리</h2>
+
+<div style="text-align:center; margin-bottom: 20px;">
+    <a href="/admin/menu/insert" class="btn">+ 메뉴 등록</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>카테고리</th>
+            <th>이름</th>
+            <th>가격</th>
+            <th>이미지</th>
+            <th>상태</th>
+            <th>관리</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="menu : ${menuList}">
+            <td th:text="${menu.menuNo}"></td>
+            <td th:text="${menu.category.categoryName}"></td>
+            <td th:text="${menu.menuName}"></td>
+            <td th:text="${menu.price} + '원'"></td>
+            <td>
+                <img th:if="${menu.menuImage != null}" th:src="@{'/uploads/' + ${menu.menuImage}}" 
+                alt="이미지" style="width: 120px;">
+            </td>
+            <td th:text="${menu.isActive == 'Y' ? '활성' : '비활성'}"></td>
+            <td>
+                <a th:href="@{'/admin/menu/update/' + ${menu.menuNo}}" class="btn">수정</a>
+                <a href="#" th:attr="data-id=${menu.menuNo}" class="btn btn-delete" style="background-color:#f44336;">삭제</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script defer th:src="@{/js/deleteMenu.js}"></script>
+</body>
+</html>
